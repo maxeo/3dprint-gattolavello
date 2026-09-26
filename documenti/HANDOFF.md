@@ -8,11 +8,11 @@ Kit compatto del porta-saponi da appoggio con il gatto di `originale\21.stl`, pe
 
 Kit compatto completo in digitale, 7 pezzi, STL verificati, guida rigenerata. Non ancora stampato.
 
-**Progetto: `D:\3D Print\GattoLavello\`**, con la stessa struttura degli altri progetti in `D:\3D Print`: in cima STL, `guida.html`, blend del kit, JSON e anteprime; `script\` catena di script + blend donatore (**solo su disco, escluso da git**: se si perde, il kit resta modificabile solo a mano nel blend); `vista_guida\` mesh della guida; `originale\` gatto 21.stl, immagini `riferimento_1…5.png` e pagina di partenza. Primo kit V2, prove, varianti vecchie e salvataggi intermedi sono stati cancellati (nel Cestino).
+**Progetto: `D:\3D Print\GattoLavello\`**, con la stessa struttura degli altri progetti in `D:\3D Print`: in cima solo `README.md` e `guida.html`; `stl\` i 7 pezzi; `blender\` il blend del kit; `dati\` JSON, `guida_spec.json` (con `"root": ".."`) e `vista_guida\` (mesh della guida); `documenti\` questo file e le anteprime; `script\` catena di script + blend donatore (**solo su disco, escluso da git**: se si perde, il kit resta modificabile solo a mano nel blend); `originale\` gatto 21.stl, immagini `riferimento_1…5.png` e pagina di partenza. Primo kit V2, prove, varianti vecchie e salvataggi intermedi sono stati cancellati (nel Cestino).
 
 Git: la cartella è il repo (LFS per .blend e .stl), remote privato https://github.com/maxeo/3dprint-gattolavello, **non ancora pushato** (l'utente ha chiesto di non pubblicarlo per ora). La vecchia cartella di lavoro `C:\Users\matteo\Documents\ChatGPT\3D Print` è superata: conserva solo la vecchia storia git (branch `storico-locale`, ~2,6 GB di LFS, da non pubblicare). Guida pubblica: https://maxeo.github.io/3dprint-guide/gattolavello/guida.html (repo `maxeo/3dprint-guide`, cartella `D:\3D Print\3dprint-guide`, aggiornare con `aggiorna_guide.sh`, che legge da `GattoLavello`; il blend del kit non viene pubblicato perché supera 100 MB).
 
-File di lavoro: `D:\3D Print\GattoLavello\GattoLavello_compatto_kit.blend` (collezione `KIT_STAMPA_compatto`). Donatore di tutti gli script: `script\compatto_pre_anteriore_unico.blend` (contiene i pezzi con i **nomi vecchi** C1_Coda_e_vasca, C2_Base_e_piedi, C3_Testa_petto_zampe, S1, S2, R1 — gli script li caricano con quei nomi, non rinominarli lì).
+File di lavoro: `D:\3D Print\GattoLavello\blender\GattoLavello_compatto_kit.blend` (collezione `KIT_STAMPA_compatto`). Donatore di tutti gli script: `script\compatto_pre_anteriore_unico.blend` (contiene i pezzi con i **nomi vecchi** C1_Coda_e_vasca, C2_Base_e_piedi, C3_Testa_petto_zampe, S1, S2, R1 — gli script li caricano con quei nomi, non rinominarli lì).
 
 ## Pezzi
 
@@ -31,15 +31,16 @@ Montaggio: G1 → V1 (orizzontale sui tenoni) → V2 (dall'alto nelle code di ro
 
 ## Script (in `D:\3D Print\GattoLavello\script\`)
 
-Rieseguibili, ripartono dal donatore; trovano donatore e altri script in `ROOT / 'script'`, dove ROOT è la cartella del blend aperto. Dentro Blender via MCP: `ns={'__name__':'x'}; exec(open(path,encoding='utf-8').read(), ns); ns['run']()`. Catena completa ~100 s. Ordine obbligato:
+Rieseguibili, ripartono dal donatore; il blend sta in `blender\`, quindi gli script usano la cartella sopra (`Path(bpy.data.filepath).parent.parent`) per trovare `script\`, `stl\`, `dati\` e `documenti\`. Dentro Blender via MCP: `ns={'__name__':'x'}; exec(open(path,encoding='utf-8').read(), ns); ns['run']()`. Catena completa ~100 s. Ordine obbligato:
 
 1. `anteriore_unico.py` — zampe da `RIFERIMENTO_21_GATTO` cucite a G2, V2 tagliata a X155,98, G2 arretrato 2,8, retro lisciato (fit Z38–56, poi parabola tangente che arriva sul piano verticale X174,7 con pendenza zero; prima c'erano un solco a Z63 e poi uno spigolo a Z65), riempimento petto/vasca, tenoni V2→G2.
 2. `vassoio_e_griglia.py` — S2 lato testa; R1 esteso con arco sulla nuca; fori/perni lato testa.
-3. `c1_diviso.py` — V1 + G1; tenoni G1→V1; code di rondine V2→V1; piastrine griglie a −Y.
+3. `c1_diviso.py` — V1 + G1; tenoni G1→V1 (Z27,5–32,5: alzati di 1,5 mm per restare sopra il fondo più inclinato); code di rondine V2→V1; piastrine griglie a −Y.
 4. `supporti_vassoio.py` — mensola G1 a filo con retro della parete raccordato (curva quadratica Z106→126,8); feritoie Y±50 lato coda di R1 da X−32,75; piastra G2 ridisegnata in pianta (maschere raster 0,5 mm: sagoma testa Z130–146 + collo Z100–116,5 dilatate 8 mm + dischi perni R7,5, chiusura R14, dentro il vassoio di 0,5, apertura R3; contorno polare dal baricentro).
-5. `esporta_kit.py` — STL + `geometria.json`; STL non più nel kit → `obsoleti/`.
-6. Background (`blender.exe -b <blend> --python <script>`): `verifica_kit.py` → `verifica_stl.json`; `render_kit.py` → anteprime; `anteprime_guida.py` → `vista_guida/*.stl`.
-7. `script/crea_guida_kit.py` (Python di Blender) → `guida_spec.json`, poi `build_guide.py <spec>` della skill `guida-stampa-3d` e controllo con `shoot.py` (da **Bash**).
+5. `scolo_vasca.py` — fondo di V1+V2 a 4° verso −Y e 1,5° verso lo scarico (X−17), alzando i vertici (mai abbassando); blocchi ponte lungo la parete −Y alzati e uniti al fondo, con il canalino (Y−66…−62, ~2,5 mm sotto i blocchi) che resta passante; vecchio scarico (X27,9–52,1) chiuso e conche riempite; nuovo foro 14 mm (X−24…−10, da Z16,2) con beccuccio fino a Y−75. Deflusso verificato con una griglia di 1 mm: restano solo minimi da 0,03 mm.
+6. `esporta_kit.py` — STL in `stl/` + `dati/geometria.json`; STL non più nel kit → `stl/obsoleti/`.
+7. Background (`blender.exe -b blender/GattoLavello_compatto_kit.blend --python script/<script>`): `verifica_kit.py` → `dati/verifica_stl.json`; `render_kit.py` → `documenti/anteprima_*.png`; `anteprime_guida.py` → `dati/vista_guida/*.stl`.
+8. `script/crea_guida_kit.py` (Python di Blender) → `dati/guida_spec.json`, poi `build_guide.py <spec>` della skill `guida-stampa-3d` e controllo con `shoot.py` (da **Bash**).
 
 Ultima verifica: 7 STL chiusi, un'isola per pezzo; interferenze solo di contatto (G1/R1 0,001 mm³, V1/G1 2e−5 mm³). Guida senza errori JS.
 

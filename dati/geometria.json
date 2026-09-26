@@ -4,7 +4,7 @@
     {
       "id": "V1",
       "name": "V1_Vasca_posteriore",
-      "file": "V1_Vasca_posteriore.stl",
+      "file": "stl/V1_Vasca_posteriore.stl",
       "bounds": [
         [
           -43.349998474121094,
@@ -15,20 +15,20 @@
           69.0
         ],
         [
-          13.800000190734863,
+          13.799999237060547,
           38.0
         ]
       ],
       "dimensions": [
         134.3499984741211,
         144.0,
-        24.199999809265137
+        24.200000762939453
       ]
     },
     {
       "id": "V2",
       "name": "V2_Vasca_anteriore",
-      "file": "V2_Vasca_anteriore.stl",
+      "file": "stl/V2_Vasca_anteriore.stl",
       "bounds": [
         [
           79.5999984741211,
@@ -52,7 +52,7 @@
     {
       "id": "G2",
       "name": "G2_Testa_petto_zampe",
-      "file": "G2_Testa_petto_zampe.stl",
+      "file": "stl/G2_Testa_petto_zampe.stl",
       "bounds": [
         [
           138.3042449951172,
@@ -76,7 +76,7 @@
     {
       "id": "G1",
       "name": "G1_Parete_e_coda",
-      "file": "G1_Parete_e_coda.stl",
+      "file": "stl/G1_Parete_e_coda.stl",
       "bounds": [
         [
           -97.38397979736328,
@@ -100,7 +100,7 @@
     {
       "id": "R1",
       "name": "R1_Ripiano_intero",
-      "file": "R1_Ripiano_intero.stl",
+      "file": "stl/R1_Ripiano_intero.stl",
       "bounds": [
         [
           -46.20000076293945,
@@ -124,7 +124,7 @@
     {
       "id": "S1",
       "name": "S1_Grata_coda",
-      "file": "S1_Grata_coda.stl",
+      "file": "stl/S1_Grata_coda.stl",
       "bounds": [
         [
           -41.0,
@@ -148,7 +148,7 @@
     {
       "id": "S2",
       "name": "S2_Grata_testa",
-      "file": "S2_Grata_testa.stl",
+      "file": "stl/S2_Grata_testa.stl",
       "bounds": [
         [
           41.0,
@@ -173,7 +173,7 @@
   "audit": {
     "V1_Vasca_posteriore": {
       "non_manifold": 0,
-      "volume_mm3": 106615.99423281511,
+      "volume_mm3": 139286.34202778334,
       "bounds": [
         [
           -43.349998474121094,
@@ -184,14 +184,14 @@
           69.0
         ],
         [
-          13.800000190734863,
+          13.799999237060547,
           38.0
         ]
       ]
     },
     "V2_Vasca_anteriore": {
       "non_manifold": 0,
-      "volume_mm3": 66015.35089386065,
+      "volume_mm3": 101921.72219560886,
       "bounds": [
         [
           79.5999984741211,
@@ -209,7 +209,7 @@
     },
     "G2_Testa_petto_zampe": {
       "non_manifold": 0,
-      "volume_mm3": 974785.5911752771,
+      "volume_mm3": 974785.5349827328,
       "bounds": [
         [
           138.3042449951172,
@@ -227,7 +227,7 @@
     },
     "G1_Parete_e_coda": {
       "non_manifold": 0,
-      "volume_mm3": 287857.71682887146,
+      "volume_mm3": 287852.78338821506,
       "bounds": [
         [
           -97.38397979736328,

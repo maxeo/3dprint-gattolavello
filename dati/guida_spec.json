@@ -1,4 +1,5 @@
 {
+  "root": "..",
   "output": "guida.html",
   "title": "GattoLavello compatto · stampa e montaggio",
   "theme": {
@@ -48,17 +49,17 @@
     {
       "id": "G1",
       "label": "Parete, posteriore e coda",
-      "file": "G1_Parete_e_coda.stl",
+      "file": "stl/G1_Parete_e_coda.stl",
       "mode": "mesh",
       "max_triangles": 30000,
       "print": "corpo",
       "group": "Gatto",
-      "view_file": "vista_guida/G1_Parete_e_coda.stl"
+      "view_file": "dati/vista_guida/G1_Parete_e_coda.stl"
     },
     {
       "id": "V1",
       "label": "Vasca posteriore",
-      "file": "V1_Vasca_posteriore.stl",
+      "file": "stl/V1_Vasca_posteriore.stl",
       "mode": "mesh",
       "max_triangles": 3500,
       "print": "vasche",
@@ -67,7 +68,7 @@
     {
       "id": "V2",
       "label": "Vasca anteriore",
-      "file": "V2_Vasca_anteriore.stl",
+      "file": "stl/V2_Vasca_anteriore.stl",
       "mode": "mesh",
       "max_triangles": 6000,
       "print": "vasche",
@@ -76,17 +77,17 @@
     {
       "id": "G2",
       "label": "Testa, petto e zampe",
-      "file": "G2_Testa_petto_zampe.stl",
+      "file": "stl/G2_Testa_petto_zampe.stl",
       "mode": "mesh",
       "max_triangles": 80000,
       "print": "corpo",
       "group": "Gatto",
-      "view_file": "vista_guida/G2_Testa_petto_zampe.stl"
+      "view_file": "dati/vista_guida/G2_Testa_petto_zampe.stl"
     },
     {
       "id": "S1",
       "label": "Grata lato coda",
-      "file": "S1_Grata_coda.stl",
+      "file": "stl/S1_Grata_coda.stl",
       "mode": "mesh",
       "max_triangles": 3500,
       "print": "piani",
@@ -95,7 +96,7 @@
     {
       "id": "S2",
       "label": "Grata lato testa",
-      "file": "S2_Grata_testa.stl",
+      "file": "stl/S2_Grata_testa.stl",
       "mode": "mesh",
       "max_triangles": 3500,
       "print": "piani",
@@ -104,7 +105,7 @@
     {
       "id": "R1",
       "label": "Ripiano superiore",
-      "file": "R1_Ripiano_intero.stl",
+      "file": "stl/R1_Ripiano_intero.stl",
       "mode": "mesh",
       "max_triangles": 8000,
       "print": "piani",
@@ -425,12 +426,16 @@
         "html": "<p><b>G1 → V1:</b> due tenoni 7 × 5 mm, lunghi 10 mm, a Y ±57. <b>V2 → G2:</b> due tenoni 7 × 5 mm a Y ±18, Z28–33. Sedi cieche con 0,2 mm di gioco per lato e 0,5 mm in fondo; facce accostate con 0,15 mm: da fuori non si vede niente.</p>"
       },
       {
+        "title": "Scarico dell’acqua",
+        "html": "<p>Il fondo della vasca scende di 4° verso il lato del beccuccio e di 1,5° verso lo scarico, vicino alle zampe posteriori. Lungo la parete corre un canalino più basso di circa 1 mm, che passa sotto i blocchi delle piastrine e porta l’acqua al foro largo 14 mm. Appoggia il gatto con il beccuccio sul bordo del lavello.</p>"
+      },
+      {
         "title": "Ripiano e grate",
         "html": "<p>Il ripiano è lungo 230 mm, con un arco sulla nuca a 1,5 mm di gioco. Quattro perni Ø6 alti 2,6 mm (G1 lato coda, G2 lato testa) entrano in fori passanti Ø6,3, separati dalle feritoie. Sotto il vassoio la mensola di G1 finisce a filo del retro, con un raccordo curvo; la piastra di G2 segue il contorno della testa e resta dentro il vassoio. Ogni grata poggia su quattro piastrine 9,2 × 9,2 mm alte 2 mm, in rientranze 10 × 10 mm (0,4 mm di gioco per lato).</p>"
       },
       {
         "title": "Verifiche digitali",
-        "html": "<p><a href=\"verifica_stl.json\">verifica_stl.json</a>: i sette STL reimportati sono chiusi e nessuna coppia di pezzi si compenetra. Lo scatto e i giochi sono valori di progetto: non sono ancora stati provati in stampa.</p>"
+        "html": "<p><a href=\"dati/verifica_stl.json\">verifica_stl.json</a>: i sette STL reimportati sono chiusi e nessuna coppia di pezzi si compenetra. Lo scatto e i giochi sono valori di progetto: non sono ancora stati provati in stampa.</p>"
       }
     ]
   },
@@ -440,53 +445,53 @@
     "links": [
       {
         "label": "G1 · Parete, posteriore e coda (109,3 × 133,1 × 193,5 mm)",
-        "href": "G1_Parete_e_coda.stl"
+        "href": "stl/G1_Parete_e_coda.stl"
       },
       {
         "label": "V1 · Vasca posteriore (134,3 × 144,0 × 24,2 mm)",
-        "href": "V1_Vasca_posteriore.stl"
+        "href": "stl/V1_Vasca_posteriore.stl"
       },
       {
         "label": "V2 · Vasca anteriore (86,4 × 138,0 × 24,2 mm)",
-        "href": "V2_Vasca_anteriore.stl"
+        "href": "stl/V2_Vasca_anteriore.stl"
       },
       {
         "label": "G2 · Testa, petto e zampe (124,4 × 111,7 × 218,3 mm)",
-        "href": "G2_Testa_petto_zampe.stl"
+        "href": "stl/G2_Testa_petto_zampe.stl"
       },
       {
         "label": "S1 · Grata lato coda (80,0 × 120,0 × 4,0 mm)",
-        "href": "S1_Grata_coda.stl"
+        "href": "stl/S1_Grata_coda.stl"
       },
       {
         "label": "S2 · Grata lato testa (105,0 × 120,0 × 4,0 mm)",
-        "href": "S2_Grata_testa.stl"
+        "href": "stl/S2_Grata_testa.stl"
       },
       {
         "label": "R1 · Ripiano superiore (230,0 × 126,4 × 15,2 mm)",
-        "href": "R1_Ripiano_intero.stl"
+        "href": "stl/R1_Ripiano_intero.stl"
       },
       {
         "label": "File Blender del kit",
-        "href": "GattoLavello_compatto_kit.blend"
+        "href": "blender/GattoLavello_compatto_kit.blend"
       },
       {
         "label": "Rapporto geometrico",
-        "href": "geometria.json"
+        "href": "dati/geometria.json"
       },
       {
         "label": "Verifica STL",
-        "href": "verifica_stl.json"
+        "href": "dati/verifica_stl.json"
       },
       {
         "label": "Anteprima assemblato",
-        "href": "anteprima_assemblato.png"
+        "href": "documenti/anteprima_assemblato.png"
       },
       {
         "label": "Anteprima incastri",
-        "href": "anteprima_incastri.png"
+        "href": "documenti/anteprima_incastri.png"
       }
     ]
   },
-  "footer_html": "GattoLavello compatto · guida offline rigenerabile da guida_spec.json."
+  "footer_html": "GattoLavello compatto · guida offline rigenerabile da dati/guida_spec.json."
 }

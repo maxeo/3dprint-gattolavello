@@ -1,0 +1,320 @@
+{
+  "variant": "compatto",
+  "parts": [
+    {
+      "id": "V1",
+      "name": "V1_Vasca_posteriore",
+      "file": "V1_Vasca_posteriore.stl",
+      "bounds": [
+        [
+          -43.349998474121094,
+          91.0
+        ],
+        [
+          -75.0,
+          69.0
+        ],
+        [
+          13.800000190734863,
+          38.0
+        ]
+      ],
+      "dimensions": [
+        134.3499984741211,
+        144.0,
+        24.199999809265137
+      ]
+    },
+    {
+      "id": "V2",
+      "name": "V2_Vasca_anteriore",
+      "file": "V2_Vasca_anteriore.stl",
+      "bounds": [
+        [
+          79.5999984741211,
+          165.97999572753906
+        ],
+        [
+          -69.0,
+          69.0
+        ],
+        [
+          13.800000190734863,
+          38.0
+        ]
+      ],
+      "dimensions": [
+        86.37999725341797,
+        138.0,
+        24.199999809265137
+      ]
+    },
+    {
+      "id": "G2",
+      "name": "G2_Testa_petto_zampe",
+      "file": "G2_Testa_petto_zampe.stl",
+      "bounds": [
+        [
+          138.3042449951172,
+          262.698974609375
+        ],
+        [
+          -55.8746223449707,
+          55.81074523925781
+        ],
+        [
+          0.0,
+          218.26368713378906
+        ]
+      ],
+      "dimensions": [
+        124.39472961425781,
+        111.68536758422852,
+        218.26368713378906
+      ]
+    },
+    {
+      "id": "G1",
+      "name": "G1_Parete_e_coda",
+      "file": "G1_Parete_e_coda.stl",
+      "bounds": [
+        [
+          -97.38397979736328,
+          11.951910018920898
+        ],
+        [
+          -66.5367431640625,
+          66.5367431640625
+        ],
+        [
+          0.0,
+          193.4886016845703
+        ]
+      ],
+      "dimensions": [
+        109.33588981628418,
+        133.073486328125,
+        193.4886016845703
+      ]
+    },
+    {
+      "id": "R1",
+      "name": "R1_Ripiano_intero",
+      "file": "R1_Ripiano_intero.stl",
+      "bounds": [
+        [
+          -46.20000076293945,
+          183.8000030517578
+        ],
+        [
+          -63.20000076293945,
+          63.20000076293945
+        ],
+        [
+          126.79999542236328,
+          142.0
+        ]
+      ],
+      "dimensions": [
+        230.00000381469727,
+        126.4000015258789,
+        15.200004577636719
+      ]
+    },
+    {
+      "id": "S1",
+      "name": "S1_Grata_coda",
+      "file": "S1_Grata_coda.stl",
+      "bounds": [
+        [
+          -41.0,
+          39.0
+        ],
+        [
+          -60.0,
+          60.0
+        ],
+        [
+          36.0,
+          40.0
+        ]
+      ],
+      "dimensions": [
+        80.0,
+        120.0,
+        4.0
+      ]
+    },
+    {
+      "id": "S2",
+      "name": "S2_Grata_testa",
+      "file": "S2_Grata_testa.stl",
+      "bounds": [
+        [
+          41.0,
+          146.0
+        ],
+        [
+          -60.0,
+          60.0
+        ],
+        [
+          36.0,
+          40.0
+        ]
+      ],
+      "dimensions": [
+        105.0,
+        120.0,
+        4.0
+      ]
+    }
+  ],
+  "audit": {
+    "V1_Vasca_posteriore": {
+      "non_manifold": 0,
+      "volume_mm3": 106615.99423281511,
+      "bounds": [
+        [
+          -43.349998474121094,
+          91.0
+        ],
+        [
+          -75.0,
+          69.0
+        ],
+        [
+          13.800000190734863,
+          38.0
+        ]
+      ]
+    },
+    "V2_Vasca_anteriore": {
+      "non_manifold": 0,
+      "volume_mm3": 66015.35089386065,
+      "bounds": [
+        [
+          79.5999984741211,
+          165.97999572753906
+        ],
+        [
+          -69.0,
+          69.0
+        ],
+        [
+          13.800000190734863,
+          38.0
+        ]
+      ]
+    },
+    "G2_Testa_petto_zampe": {
+      "non_manifold": 0,
+      "volume_mm3": 974785.5911752771,
+      "bounds": [
+        [
+          138.3042449951172,
+          262.698974609375
+        ],
+        [
+          -55.8746223449707,
+          55.81074523925781
+        ],
+        [
+          0.0,
+          218.26368713378906
+        ]
+      ]
+    },
+    "G1_Parete_e_coda": {
+      "non_manifold": 0,
+      "volume_mm3": 287857.71682887146,
+      "bounds": [
+        [
+          -97.38397979736328,
+          11.951910018920898
+        ],
+        [
+          -66.5367431640625,
+          66.5367431640625
+        ],
+        [
+          0.0,
+          193.4886016845703
+        ]
+      ]
+    },
+    "R1_Ripiano_intero": {
+      "non_manifold": 0,
+      "volume_mm3": 78808.58162480462,
+      "bounds": [
+        [
+          -46.20000076293945,
+          183.8000030517578
+        ],
+        [
+          -63.20000076293945,
+          63.20000076293945
+        ],
+        [
+          126.79999542236328,
+          142.0
+        ]
+      ]
+    },
+    "S1_Grata_coda": {
+      "non_manifold": 0,
+      "volume_mm3": 20046.89321604996,
+      "bounds": [
+        [
+          -41.0,
+          39.0
+        ],
+        [
+          -60.0,
+          60.0
+        ],
+        [
+          36.0,
+          40.0
+        ]
+      ]
+    },
+    "S2_Grata_testa": {
+      "non_manifold": 0,
+      "volume_mm3": 27557.965226526714,
+      "bounds": [
+        [
+          41.0,
+          146.0
+        ],
+        [
+          -60.0,
+          60.0
+        ],
+        [
+          36.0,
+          40.0
+        ]
+      ]
+    }
+  },
+  "incastri": {
+    "G1_V1": "2 tenoni 7.0x5.0 a Y+-57.0 verso la vasca V1",
+    "V1_V2": "code di rondine verticali Y+-59.5, V2 scende dall'alto; dentino a scatto",
+    "V2_G2": "2x 7.0x5.0x10.0 mm, Y+-18.0, Z28.0-33.0; sedi cieche, gioco 0.2 per lato, 0.5 in fondo",
+    "R1_G2": "Ø6.0 h2.6 a (168,-48), (168,48); fori passanti Ø6.3 a (168.4,-48), (168.4,48)",
+    "R1_G1": "mensola a filo del vassoio X-46.2..-29.5, raccordo concavo R12.5; perni Ø6 a (-37.0,±48.0); fori passanti Ø6.3 a (-37.1,±48), feritoie Y±50 da X-32.8",
+    "G2_supporto": "piastra sagomata attorno a testa e perni: margine 8, raccordi R14/R3.0, dentro il vassoio di 0.5",
+    "griglie": "piastrine 9.2x9.2 (Z36-38) in rientranze 10x10 (Z38.3) sotto S1/S2, su entrambi i lati"
+  },
+  "montaggio": [
+    "G1_Parete_e_coda in piano",
+    "V1_Vasca_posteriore: entra orizzontale sui tenoni di G1",
+    "V2_Vasca_anteriore: scende dall'alto nelle code di rondine fino allo scatto",
+    "G2_Testa_petto_zampe: si spinge sui tenoni di V2",
+    "S1 e S2 sulle piastrine",
+    "R1_Ripiano_intero sui perni di G1 e G2"
+  ],
+  "note": "Anteriore unico senza taglio sulle zampe (piedi da 21.stl), arretrato 2.8 mm; vassoio a 230 mm con arco sulla nuca.",
+  "limite_mm": 230.0
+}

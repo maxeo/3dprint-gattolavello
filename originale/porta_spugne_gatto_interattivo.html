@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width,initial-scale=1" name="viewport"/>
+<title>Porta-spugne e porta-sapone a 2 piani – concept gatto</title>
+<style>
+  :root{
+    --bg:#f4f7f8;
+    --panel:#ffffff;
+    --ink:#17313a;
+    --muted:#61727a;
+    --line:#18343d;
+    --cream:#fff8eb;
+    --cream-shadow:#ebd8ba;
+    --cream2:#f3e3c3;
+    --pink:#ffb7c5;
+    --pink-dark:#e88096;
+    --green:#7abf74;
+    --blue:#6bb5d6;
+    --water:#38a3d1;
+    --shadow:0 10px 30px rgba(22,48,58,.12);
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0;
+    font-family:Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+    background:linear-gradient(180deg,#f7fafb 0,#edf3f5 100%);
+    color:var(--ink);
+  }
+  header{
+    padding:28px 24px 18px;
+    max-width:1320px;
+    margin:auto;
+  }
+  h1{margin:0 0 8px;font-size:clamp(26px,4vw,44px);letter-spacing:-.03em}
+  header p{margin:0;color:var(--muted);max-width:900px;line-height:1.55}
+  main{max-width:1320px;margin:auto;padding:0 24px 40px}
+  .toolbar,.panel,.specs{
+    background:rgba(255,255,255,.94);
+    border:1px solid #dfe7ea;
+    border-radius:18px;
+    box-shadow:var(--shadow);
+  }
+  .toolbar{padding:14px;display:flex;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+  button{
+    border:1px solid #c9d7dc;background:#fff;color:var(--ink);
+    padding:10px 14px;border-radius:12px;font-weight:700;cursor:pointer;
+    transition:all .2s ease;
+  }
+  button:hover{border-color:var(--ink)}
+  button.active{background:var(--ink);color:white;border-color:var(--ink)}
+  .layout{display:grid;grid-template-columns:minmax(0,1fr) 330px;gap:16px}
+  .panel{padding:14px;min-height:640px;overflow:hidden}
+  .specs{padding:18px}
+  .specs h2{font-size:19px;margin:0 0 12px}
+  .specs h3{font-size:15px;margin:18px 0 8px}
+  .specs p,.specs li{font-size:14px;color:var(--muted);line-height:1.5}
+  .specs ul{padding-left:18px}
+  .measure-table{width:100%;border-collapse:collapse;font-size:13px}
+  .measure-table td{padding:8px 0;border-bottom:1px solid #edf1f2;vertical-align:top}
+  .measure-table td:last-child{text-align:right;font-weight:800;color:var(--ink);padding-left:12px}
+  .hint{margin-top:14px;padding:12px;background:#f3f7f8;border-radius:12px;font-size:13px;color:#52666e}
+  svg{display:block;width:100%;height:auto;background:#fbfdfd;border-radius:14px}
+  .view{display:block}
+  .view.active{display:block}
+  .dim{stroke:#40545c;stroke-width:1.6;marker-start:url(#arrow);marker-end:url(#arrow)}
+  .ext{stroke:#8da0a7;stroke-width:1;stroke-dasharray:4 4}
+  .label{font-size:13px;font-weight:800;fill:#213a42;paint-order:stroke;stroke:#fff;stroke-width:4px;stroke-linejoin:round}
+  .small{font-size:11px;font-weight:700;fill:#4f646b}
+  .part{stroke:#18343d;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .note{fill:#fff;stroke:#cad8dd;stroke-width:1.5}
+  .water{stroke:var(--water);fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}
+  .waterDash{stroke:var(--water);fill:none;stroke-width:3.5;stroke-dasharray:8 7;stroke-linecap:round}
+  .call{stroke:#6c7d84;stroke-width:1.4}
+  .legend{display:flex;gap:12px;flex-wrap:wrap;padding:10px 2px 0;font-size:12px;color:var(--muted)}
+  .dot{display:inline-block;width:11px;height:11px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+  @media(max-width:980px){.layout{grid-template-columns:1fr}.panel{min-height:auto}}
+
+  .view-index{display:flex;gap:8px;flex-wrap:wrap;margin:0 0 16px}
+  .view-index a{color:var(--ink);text-decoration:none;background:#fff;border:1px solid #d7e2e6;padding:8px 11px;border-radius:999px;font-size:12px;font-weight:800}
+  .view-index a:hover{background:#edf5f7}
+  .view-stack{display:grid;gap:18px}
+  .view-card{background:rgba(255,255,255,.96);border:1px solid #dfe7ea;border-radius:18px;box-shadow:var(--shadow);padding:14px;scroll-margin-top:16px}
+  .view-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;padding:3px 5px 12px}
+  .view-head h2{font-size:19px;line-height:1.15;margin:0;color:var(--ink)}
+  .view-head p{margin:0;max-width:620px;font-size:12px;line-height:1.45;color:var(--muted);text-align:right}
+  .view-card svg{border:1px solid #edf2f3;background:linear-gradient(180deg,#fcfefe 0%,#f6fafb 100%)}
+  .layout{align-items:start}
+  .panel{padding:0;min-height:0;background:transparent;border:0;box-shadow:none;overflow:visible}
+  .specs{position:sticky;top:12px}
+  .design-improvements{margin-top:16px;padding:14px;border:1px solid #dae6e9;background:#f8fbfc;border-radius:14px}
+  .design-improvements strong{color:var(--ink)}
+  .design-improvements ul{margin:8px 0 0}
+  .part-soft{stroke:#18343d;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+  .fur-line{stroke:#c8aa7a;stroke-width:1.5;fill:none;stroke-linecap:round;opacity:.75}
+  .context-line{stroke:#8fa0a7;stroke-width:2;fill:none}
+  .tile-line{stroke:#d7e0e3;stroke-width:1.4}
+  .counter{fill:#e2dfd4;stroke:#8e9694;stroke-width:2}
+  .sink{fill:#c7ced0;stroke:#67767b;stroke-width:3}
+  @media(max-width:980px){.specs{position:static}.view-head{display:block}.view-head p{text-align:left;margin-top:6px}}
+
+  .view-card svg{cursor:default;user-select:none}
+  [data-part]{
+    cursor:pointer;
+    transition:filter .18s ease,opacity .18s ease,transform .18s ease;
+    transform-box:fill-box;
+    transform-origin:center;
+    outline:none;
+  }
+  [data-part]:hover,
+  [data-part]:focus-visible{
+    filter:drop-shadow(0 0 5px rgba(56,163,209,.78));
+  }
+  [data-part].is-selected{
+    filter:drop-shadow(0 0 9px rgba(216,132,95,.98)) drop-shadow(0 0 3px rgba(255,255,255,.9));
+  }
+  [data-part].is-muted{opacity:.34;filter:saturate(.55)}
+  [data-part].is-selected .part,
+  [data-part].is-selected.part,
+  [data-part].is-selected .part-soft,
+  [data-part].is-selected.part-soft{
+    stroke-width:4;
+  }
+  .feature-result{
+    margin:0 5px 12px;
+    padding:12px 14px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#f1f8fa,#fffaf4);
+    border:1px solid #d4e4e9;
+    box-shadow:0 5px 18px rgba(22,48,58,.06);
+    font-size:12px;
+    line-height:1.45;
+    color:#425a63;
+  }
+  .feature-result.is-active{border-color:#d9b58c;background:linear-gradient(135deg,#eef8fb,#fff6ea)}
+  .feature-result-head{display:flex;align-items:center;gap:8px;margin-bottom:8px}
+  .feature-result-badge{
+    display:inline-flex;align-items:center;justify-content:center;min-width:25px;height:25px;padding:0 8px;
+    border-radius:999px;background:#17313a;color:white;font-size:11px;font-weight:900
+  }
+  .feature-result-title{font-size:14px;font-weight:900;color:var(--ink)}
+  .feature-result-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+  .feature-result-cell{padding:9px 10px;border-radius:10px;background:rgba(255,255,255,.74);border:1px solid #e2ecef}
+  .feature-result-cell b{display:block;color:var(--ink);margin-bottom:2px}
+  .feature-result-placeholder{color:var(--muted)}
+  .interaction-chip{
+    display:inline-flex;align-items:center;gap:6px;margin-left:auto;padding:6px 9px;border-radius:999px;
+    background:#edf7fa;border:1px solid #d4e5ea;color:#47616a;font-size:11px;font-weight:800;white-space:nowrap
+  }
+  .interaction-chip::before{content:'●';color:var(--water);font-size:9px}
+  .mouse-help{
+    margin:12px 5px 0;padding:10px 12px;border-radius:12px;background:#fbfcfc;border:1px dashed #cad8dd;
+    font-size:12px;color:var(--muted)
+  }
+  .is-flowing .waterDash,.waterDash.is-flowing{
+    animation:flowDash .65s linear infinite;
+    filter:drop-shadow(0 0 5px rgba(56,163,209,.9));
+  }
+  .is-flowing .water,.water.is-flowing{
+    animation:flowGlow .75s ease-in-out infinite alternate;
+  }
+  .is-flowing circle[fill="var(--water)"],circle.is-flowing[fill="var(--water)"]{
+    animation:dropPulse .7s ease-in-out infinite alternate;
+  }
+  @keyframes flowDash{to{stroke-dashoffset:-30}}
+  @keyframes flowGlow{from{filter:drop-shadow(0 0 1px rgba(56,163,209,.35))}to{filter:drop-shadow(0 0 7px rgba(56,163,209,1))}}
+  @keyframes dropPulse{from{opacity:.45;transform:translateY(-2px)}to{opacity:1;transform:translateY(4px)}}
+  @media(max-width:700px){.feature-result-grid{grid-template-columns:1fr}.interaction-chip{margin-left:0}.view-head{gap:8px}}
+
+
+</style>
+</head>
+<body>
+<header>
+<h1>Porta-spugne / porta-sapone a 2 piani — concept “gatto”</h1>
+<p>Schema per stampa 3D di un contenitore a 2 piani a forma di gatto: piano inferiore per 2 spugne da 75 × 110 mm su grata drenante, piano superiore per 2 porta-saponi da 110 × 50 × 175 mm, con raccolta acqua e scarico verso il lavello.</p>
+</header>
+<main>
+<nav aria-label="Indice delle viste" class="view-index">
+  <a href="#vista-frontale">Frontale</a>
+  <a href="#vista-laterale">Laterale</a>
+  <a href="#vista-alto">Dall’alto</a>
+  <a href="#vista-drenaggio">Drenaggio</a>
+  <a href="#vista-ambientata">Ambientata</a>
+</nav>
+
+<div class="layout">
+<section class="panel view-stack">
+
+<!-- VISTA FRONTALE (Vera Frontale) -->
+<section class="view-card" id="vista-frontale"><div class="view-head"><h2>1 · Vista frontale vera</h2><p>Profilo anteriore dell'oggetto. Mostra la larghezza utile di 140 mm, la struttura a livelli e il volto del gatto.</p></div>
+<svg aria-label="Vista frontale" class="view" id="front" viewBox="0 0 920 620">
+<defs><marker id="arrow2" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="5" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="#40545c"></path></marker></defs>
+<style>.d2{stroke:#40545c;stroke-width:1.6;marker-start:url(#arrow2);marker-end:url(#arrow2)}</style>
+
+<!-- Struttura base vista dal lato corto -->
+<rect class="part" x="380" y="380" width="160" height="80" rx="30" fill="var(--cream)" data-part="Vasca inferiore" data-info="Raccoglie l’acqua che attraversa la grata e la convoglia verso il lato di scarico." data-result="Le spugne non restano immerse nell’acqua e il piano di appoggio rimane separato dal ristagno."></rect>
+
+<!-- Corpo verticale retro (supporto piano alto) -->
+<rect class="part" x="390" y="220" width="140" height="200" rx="20" fill="var(--cream)" data-part="Supporto verticale" data-info="Collega il piano inferiore al ripiano dei dispenser e irrigidisce la struttura." data-result="I due livelli rimangono separati e il ripiano superiore non grava sulle spugne."></rect>
+
+<!-- Vassoio superiore (bordo anticaduta) -->
+<rect class="part" fill="#e7d1a4" height="30" rx="8" width="160" x="380" y="200" data-part="Ripiano superiore" data-info="È il piano dedicato ai due dispenser di sapone." data-result="I dispenser restano sopraelevati, asciutti e separati dalle spugne bagnate."></rect>
+
+<!-- Dispenser (frontale) -->
+<g transform="translate(415, 65)" data-part="Dispenser" data-info="Rappresenta l’ingombro del porta-sapone da circa 110 × 50 × 175 mm." data-result="La quota del secondo piano lascia spazio sufficiente al dispenser senza interferire con il livello inferiore.">
+  <rect class="part" fill="#80c976" height="135" rx="12" width="90" x="0" y="55"></rect>
+  <rect class="part" fill="#eff4f4" height="30" rx="4" width="24" x="33" y="25"></rect>
+  <path class="part" d="M57 35 V 5 H 90" fill="none"></path>
+</g>
+
+<!-- Spugna frontale -->
+<rect class="part" fill="#f0cd45" height="40" rx="5" width="80" x="420" y="340" data-part="Spugna" data-info="La spugna appoggia sulla grata, non direttamente sul fondo della vasca." data-result="L’aria circola sotto la spugna e l’acqua può scendere senza mantenerla a bagno."></rect>
+<!-- Grata e fondo visibile -->
+<rect class="part" fill="#efe0bd" height="35" rx="5" width="160" x="380" y="385" data-part="Grata spugne" data-info="Superficie removibile che sostiene le spugne e lascia passare l’acqua." data-result="La grata può essere estratta per la pulizia e riduce il contatto tra spugna e acqua raccolta."></rect>
+
+<!-- Zampe d'appoggio frontali -->
+<path class="part-soft" d="M410 460 v25 a 12 12 0 0 0 24 0 v-25" fill="var(--cream-shadow)"></path>
+<path class="part-soft" d="M486 460 v25 a 12 12 0 0 0 24 0 v-25" fill="var(--cream-shadow)"></path>
+
+<!-- Faccina del gatto (recuperata e centrata) -->
+<g transform="translate(362 225) scale(1.4)" data-part="Testa del gatto" data-info="Elemento estetico frontale integrato nella struttura, posizionato più in basso nella vista frontale." data-result="La faccina risulta più coerente con il corpo del contenitore e meno sospesa rispetto al resto della struttura.">
+  <path class="part" d="M20 20 L 35 -30 L 60 5 Z" fill="var(--cream)"></path>
+  <path class="part" d="M27 12 L 37 -20 L 52 2 Z" fill="var(--pink)"></path>
+  <path class="part" d="M80 15 L 110 -20 L 120 25 Z" fill="var(--cream)"></path>
+  <path class="part" d="M87 13 L 107 -10 L 113 22 Z" fill="var(--pink)"></path>
+  <ellipse class="part" cx="70" cy="45" fill="var(--cream)" rx="65" ry="50"></ellipse>
+  <circle cx="20" cy="60" fill="var(--cream)" r="22"></circle>
+  <circle cx="120" cy="60" fill="var(--cream)" r="22"></circle>
+  <path d="M 40 38 Q 52 25 64 38" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="3.5"></path>
+  <path d="M 78 38 Q 90 25 102 38" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="3.5"></path>
+  <polygon fill="var(--pink-dark)" points="65,48 75,48 70,55" stroke="#18343d" stroke-linejoin="round" stroke-width="1.5"></polygon>
+  <path d="M 60 58 Q 70 66 70 58 Q 70 66 80 58" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="2.5"></path>
+  <path d="M 15 48 L -15 42 M 12 56 L -18 56 M 15 64 L -12 70" stroke="#18343d" stroke-linecap="round" stroke-width="2"></path>
+  <path d="M 125 48 L 155 42 M 128 56 L 158 56 M 125 64 L 152 70" stroke="#18343d" stroke-linecap="round" stroke-width="2"></path>
+  <g transform="translate(0, 15)">
+      <circle class="part" cx="15" cy="80" fill="var(--cream)" r="16"></circle>
+      <circle cx="8" cy="82" fill="var(--pink-dark)" r="3"></circle>
+      <circle cx="15" cy="86" fill="var(--pink-dark)" r="3"></circle>
+      <circle cx="22" cy="82" fill="var(--pink-dark)" r="3"></circle>
+  </g>
+  <g transform="translate(110, 15)">
+      <circle class="part" cx="15" cy="80" fill="var(--cream)" r="16"></circle>
+      <circle cx="8" cy="82" fill="var(--pink-dark)" r="3"></circle>
+      <circle cx="15" cy="86" fill="var(--pink-dark)" r="3"></circle>
+      <circle cx="22" cy="82" fill="var(--pink-dark)" r="3"></circle>
+  </g>
+</g>
+
+<!-- Quote -->
+<line class="ext" x1="380" x2="380" y1="480" y2="520"></line>
+<line class="ext" x1="540" x2="540" y1="480" y2="520"></line>
+<line class="d2" x1="380" x2="540" y1="500" y2="500"></line>
+<text class="label" x="390" y="490">140 mm larghezza</text>
+
+<line class="ext" x1="320" x2="360" y1="485" y2="485"></line>
+<line class="ext" x1="320" x2="360" y1="65" y2="65"></line>
+<line class="d2" x1="340" x2="340" y1="485" y2="65"></line>
+<text class="label" transform="rotate(-90 325 275)" x="325" y="275">330 mm altezza</text>
+</svg>
+</section>
+
+<!-- VISTA LATERALE -->
+<section class="view-card" id="vista-laterale"><div class="view-head"><h2>2 · Vista laterale</h2><p>Profondità reale sul piano cucina e inclinazione della vaschetta verso il lavello.</p></div><svg aria-label="Vista laterale" class="view" id="side" viewBox="0 0 920 620">
+<defs><marker id="arrow3" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="5" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="#40545c"></path></marker></defs>
+<style>.d3{stroke:#40545c;stroke-width:1.6;marker-start:url(#arrow3);marker-end:url(#arrow3)}</style>
+<path class="part" d="M250 353 h355 q40 0 64-29 l38-47 q10-13 22-2 q10 9 1 21 l-45 62 q-27 37-78 41H270q-30 0-35-24q-2-12 15-22z" fill="var(--cream)" data-part="Corpo principale" data-info="Il corpo contiene la vasca inferiore e crea l’appoggio strutturale sul bordo cucina." data-result="La forma lunga segue il fianco del lavello e concentra l’ingombro in profondità anziché in larghezza."></path>
+<rect class="part" fill="#efe0bd" height="35" rx="7" width="290" x="315" y="314"></rect>
+<g data-part="Bordo anticaduta" data-info="Sponda superiore da 12 mm che impedisce ai dispenser di scivolare." data-result="Il flacone rimane contenuto anche se il ripiano viene urtato o è bagnato."><rect class="part" fill="#e7d1a4" height="36" rx="7" width="235" x="366" y="166"></rect><path class="part-soft" d="M366 166 V151 H601 V166 M366 202 V190 H601 V202" fill="none" stroke="var(--cream-shadow)" stroke-width="8"></path></g>
+<rect class="part" fill="var(--cream-shadow)" height="114" rx="9" width="28" x="378" y="200"></rect>
+<rect class="part" fill="var(--cream-shadow)" height="114" rx="9" width="28" x="560" y="200"></rect>
+<rect class="part" fill="#f0cd45" height="44" rx="6" width="110" x="430" y="270" data-part="Spugna sul piano inferiore" data-info="Mostra la separazione verticale fra spugna e dispenser." data-result="La spugna ha un vano dedicato e non ostacola l’uso del sapone sul piano superiore."></rect>
+<g transform="translate(436 64)" data-part="Dispenser sul piano alto" data-info="Il dispenser è appoggiato sul secondo livello, protetto dal bordo." data-result="Sapone e spugna sono separati fisicamente e il bordo del lavello rimane più libero.">
+<rect class="part" fill="#80c976" height="57" rx="16" width="96" x="0" y="45"></rect>
+<rect class="part" fill="#eff4f4" height="30" rx="4" width="30" x="33" y="18"></rect>
+<path class="part" d="M48 18V5H80" fill="none"></path>
+</g>
+<path d="M326 343 L594 343 L578 360 L337 360Z" fill="#d6eef8" stroke="#18343d" stroke-width="1.4"></path>
+<line class="water" x1="340" x2="570" y1="353" y2="344" data-part="Pendenza della vasca" data-info="Il fondo è inclinato di circa 3° verso l’apertura di scarico." data-result="La gravità porta l’acqua spontaneamente verso il lavello, riducendo i ristagni." data-action="flow"></line>
+<path class="water" d="M570 344 Q600 342 614 363"></path>
+<circle cx="616" cy="370" fill="var(--water)" r="5"></circle>
+<line class="ext" x1="315" x2="315" y1="430" y2="470"></line><line class="ext" x1="605" x2="605" y1="430" y2="470"></line>
+<line class="d3" x1="315" x2="605" y1="458" y2="458"></line><text class="label" x="413" y="448">120 mm profondità</text>
+<line class="d3" x1="651" x2="651" y1="314" y2="360"></line><text class="label" x="666" y="340">18 mm</text>
+<g aria-label="migliorie laterali">
+<path class="part-soft" d="M315 309 H605 V314 H315 Z" fill="var(--cream2)"></path>
+<path class="part-soft" d="M350 395 h38 l-4 40 q-3 13-15 13 h-5 q-12 0-14-13z" fill="var(--cream-shadow)"></path>
+<path class="part-soft" d="M540 395 h38 l-4 40 q-3 13-15 13 h-5 q-12 0-14-13z" fill="var(--cream-shadow)"></path>
+<text class="small" x="605" y="304">sponda posteriore / parete posteriore paraschizzi</text>
+<path class="waterDash" d="M614 363 Q645 380 675 401" data-part="Uscita verso il lavello" data-info="L’acqua lascia la vasca senza tubi o cannucce e cade direttamente nella vasca del lavello." data-result="Il percorso è corto, visibile e molto più semplice da pulire." data-action="flow"></path>
+<text class="small" x="680" y="405">verso la vasca del lavello</text>
+</g><text class="small" x="323" y="384">vaschetta con pendenza ≈ 3° verso lo scarico</text>
+</svg></section>
+
+<!-- VISTA DALL'ALTO -->
+<section class="view-card" id="vista-alto">
+<div class="view-head"><h2>3 · Vista dall’alto</h2><p>Distribuzione dei due piani vista dall’alto: area spugne sotto, area porta-saponi sopra e scarico rivolto verso il lavello.</p></div>
+<svg aria-label="Vista dall'alto del contenitore a 2 piani" class="view" id="top" viewBox="0 0 920 620">
+<defs>
+<marker id="arrow4" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="5" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="#40545c"></path></marker>
+<pattern height="18" id="grate2" patternUnits="userSpaceOnUse" width="18"><path d="M0 0L18 18M18 0L0 18" stroke="#8ea0a6" stroke-width="1.2"></path></pattern>
+</defs>
+<style>.d4{stroke:#40545c;stroke-width:1.6;marker-start:url(#arrow4);marker-end:url(#arrow4)}</style>
+
+<!-- riferimento bordo lavello -->
+<path d="M620 55 V565" fill="none" stroke="#9ba9ae" stroke-width="9" stroke-linecap="round"></path>
+<text class="small" x="640" y="92">bordo destro del lavello</text>
+
+<!-- oggetto ruotato 90° -->
+<g transform="rotate(90 440 300)" data-part="Distribuzione dall’alto" data-info="La vista mostra come il contenitore organizza i due livelli: spugne sul piano inferiore e porta-saponi sul piano superiore." data-result="Si capisce subito la disposizione delle zone utili e il verso dello scarico verso il lavello.">
+  <rect x="190" y="160" width="500" height="250" rx="65" fill="var(--cream)" class="part"></rect>
+  <rect x="250" y="245" width="340" height="110" rx="12" fill="url(#grate2)" class="part" data-part="Grata removibile" data-info="Il piano traforato può essere sollevato dal corpo per lavare il vano sottostante." data-result="Pulizia più semplice e accesso diretto alla vasca di raccolta."></rect>
+  <rect x="275" y="260" width="110" height="75" rx="6" fill="#f0cd45" class="part" data-part="Spugna 1" data-info="Prima posizione utile da 75 × 110 mm sul piano inferiore." data-result="Le due spugne hanno sedi affiancate senza sovrapporsi."></rect>
+  <rect x="405" y="260" width="110" height="75" rx="6" fill="#f0cd45" class="part" data-part="Spugna 2" data-info="Seconda posizione utile da 75 × 110 mm sul piano inferiore." data-result="La capacità prevista è di due spugne mantenendo libero il percorso di drenaggio."></rect>
+
+  <rect x="290" y="175" width="300" height="55" rx="10" fill="#e7d1a4" class="part" data-part="Piano dispenser" data-info="Zona superiore dimensionata per ospitare due flaconi affiancati." data-result="I dispenser restano raccolti in un unico piano protetto dai bordi."></rect>
+  <rect x="300" y="185" width="280" height="35" rx="6" fill="#fff5df" stroke="#b99965" stroke-width="3"></rect>
+  <rect x="315" y="183" width="110" height="40" rx="8" fill="#80c976" class="part" data-part="Dispenser 1" data-info="Prima impronta del dispenser sul piano superiore." data-result="Il piano prevede gioco sufficiente per inserimento e rimozione del flacone."></rect>
+  <rect x="445" y="183" width="110" height="40" rx="8" fill="#6bb5d6" class="part" data-part="Dispenser 2" data-info="Seconda impronta del dispenser sul piano superiore." data-result="Due flaconi possono essere tenuti separati dalle spugne sul livello inferiore."></rect>
+  
+  <path class="part" d="M200 270 Q122 244 113 194 Q108 163 137 142 Q153 131 165 143 Q176 154 162 166 Q142 181 150 201 Q160 227 209 231Z" fill="var(--cream)"></path>
+</g>
+
+<!-- Faccina riutilizzata e posizionata sopra la sagoma -->
+<g transform="translate(385 450) scale(1)">
+  <path class="part" d="M20 20 L 35 -30 L 60 5 Z" fill="var(--cream)"></path>
+  <path class="part" d="M27 12 L 37 -20 L 52 2 Z" fill="var(--pink)"></path>
+  <path class="part" d="M80 15 L 110 -20 L 120 25 Z" fill="var(--cream)"></path>
+  <path class="part" d="M87 13 L 107 -10 L 113 22 Z" fill="var(--pink)"></path>
+  <ellipse class="part" cx="70" cy="45" fill="var(--cream)" rx="65" ry="50"></ellipse>
+  <circle cx="20" cy="60" fill="var(--cream)" r="22"></circle>
+  <circle cx="120" cy="60" fill="var(--cream)" r="22"></circle>
+  <path d="M 40 38 Q 52 25 64 38" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="3.5"></path>
+  <path d="M 78 38 Q 90 25 102 38" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="3.5"></path>
+  <polygon fill="var(--pink-dark)" points="65,48 75,48 70,55" stroke="#18343d" stroke-linejoin="round" stroke-width="1.5"></polygon>
+  <path d="M 60 58 Q 70 66 70 58 Q 70 66 80 58" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="2.5"></path>
+  <path d="M 15 48 L -15 42 M 12 56 L -18 56 M 15 64 L -12 70" stroke="#18343d" stroke-linecap="round" stroke-width="2"></path>
+  <path d="M 125 48 L 155 42 M 128 56 L 158 56 M 125 64 L 152 70" stroke="#18343d" stroke-linecap="round" stroke-width="2"></path>
+</g>
+
+<!-- scarico diretto -->
+<g data-part="Caduta diretta" data-info="L’acqua raggiunge il bordo interno e cade direttamente nella vasca del lavello." data-result="Nessuna cannuccia da intasare: il drenaggio resta visibile e accessibile." data-action="flow">
+<path class="waterDash" d="M552 378 H610"></path>
+<circle cx="612" cy="378" r="5" fill="var(--water)"></circle>
+</g>
+<path d="M500 520 A125 125 0 0 0 625 395" fill="none" stroke="#d8845f" stroke-width="3" marker-end="url(#arrow4)"></path>
+<text class="label" x="326" y="545">distribuzione a 2 piani</text>
+<text class="small" x="218" y="570">piano spugne sotto · piano porta-saponi sopra · scarico rivolto verso il lavello</text>
+</svg>
+</section>
+
+<!-- SEZIONE DRENAGGIO -->
+<section class="view-card" id="vista-drenaggio">
+<div class="view-head"><h2>4 · Sezione drenaggio — caduta diretta</h2><p>Nessun tubicino: il fondo porta l’acqua a una bocca aperta sul bordo e da lì cade verticalmente nel lavello.</p></div>
+<svg aria-label="Sezione drenaggio a caduta diretta" class="view" id="section" viewBox="0 0 920 620">
+<defs><marker id="arrow5" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="5" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="#40545c"></path></marker></defs>
+<style>.d5{stroke:#40545c;stroke-width:1.6;marker-start:url(#arrow5);marker-end:url(#arrow5)}</style>
+<text class="label" x="120" y="82">Sezione del piano inferiore</text>
+
+<path class="part" d="M145 210 H750 V390 H145Z" fill="var(--cream)"></path>
+<path d="M185 250 H690 L650 345 H215Z" fill="#d8edf4" stroke="#18343d" stroke-width="2"></path>
+
+<!-- grata removibile -->
+<rect fill="#f4f7f7" height="28" rx="6" stroke="#18343d" stroke-width="2" width="505" x="185" y="225" data-part="Grata removibile" data-info="La grata si solleva senza utensili e lascia accesso alla vasca." data-result="Residui e sapone possono essere rimossi senza smontare il corpo principale."></rect>
+<g stroke="#879aa1" stroke-width="3">
+<line x1="205" x2="205" y1="227" y2="251"></line><line x1="235" x2="235" y1="227" y2="251"></line>
+<line x1="265" x2="265" y1="227" y2="251"></line><line x1="295" x2="295" y1="227" y2="251"></line>
+<line x1="325" x2="325" y1="227" y2="251"></line><line x1="355" x2="355" y1="227" y2="251"></line>
+<line x1="385" x2="385" y1="227" y2="251"></line><line x1="415" x2="415" y1="227" y2="251"></line>
+<line x1="445" x2="445" y1="227" y2="251"></line><line x1="475" x2="475" y1="227" y2="251"></line>
+<line x1="505" x2="505" y1="227" y2="251"></line><line x1="535" x2="535" y1="227" y2="251"></line>
+<line x1="565" x2="565" y1="227" y2="251"></line><line x1="595" x2="595" y1="227" y2="251"></line>
+<line x1="625" x2="625" y1="227" y2="251"></line><line x1="655" x2="655" y1="227" y2="251"></line>
+</g>
+
+<!-- fondo e uscita aperta -->
+<path class="water" d="M225 319 L648 286 L690 286" data-part="Percorso dell’acqua" data-info="La pendenza del fondo concentra l’acqua verso l’apertura laterale." data-result="L’acqua non deve attraversare condotti stretti prima di uscire." data-action="flow"></path>
+<path class="part-soft" d="M650 345 H714 V362 H690 V352 H650Z" fill="var(--cream-shadow)" data-part="Bocca di scarico 24 × 8 mm" data-info="Apertura ampia e corta ricavata direttamente sul bordo della vasca." data-result="Passaggio meno soggetto a intasamenti e facile da raggiungere durante la pulizia."></path>
+<path class="waterDash" d="M700 295 V430" data-part="Caduta verticale" data-info="Dopo l’apertura, l’acqua non viene guidata da un tubo: cade liberamente." data-result="Il lavello riceve direttamente lo scarico e non rimangono tratti nascosti da asciugare." data-action="flow"></path>
+<circle cx="700" cy="447" fill="var(--water)" r="7"></circle>
+<circle cx="700" cy="470" fill="var(--water)" r="6"></circle>
+
+<line class="d5" x1="785" x2="785" y1="225" y2="253"></line><text class="label" x="801" y="244">4 mm grata</text>
+<line class="d5" x1="165" x2="165" y1="250" y2="345"></line><text class="label" transform="rotate(-90 84 304)" x="84" y="304">12 mm raccolta acqua</text>
+
+<rect class="note" height="96" rx="12" width="565" x="180" y="495"></rect>
+<text class="label" x="200" y="520">Drenaggio a caduta libera</text>
+<text class="small" x="200" y="543">Fondo inclinato ~3° → apertura 24 × 8 mm sul bordo → caduta verticale nel lavello.</text>
+<text class="small" x="200" y="565">Niente cannuccia, beccuccio lungo o tubo: meno ristagni e pulizia più semplice.</text>
+
+<g aria-label="dettagli manutenzione">
+<path class="ext" d="M185 210 V190 M690 210 V190"></path>
+<line class="d5" x1="185" x2="690" y1="196" y2="196"></line>
+<text class="small" x="374" y="185">grata removibile senza utensili</text>
+</g>
+</svg>
+</section>
+
+<!-- VISTA AMBIENTATA -->
+<section class="view-card" id="vista-ambientata">
+<div class="view-head">
+<h2>5 · Vista ambientata sul lavello reale</h2>
+<p>Inserimento ambientato sul bordo del lavello: si vede il contenitore a 2 piani con faccina frontale, piano superiore rialzato e scarico diretto verso la vasca.</p>
+</div>
+<svg aria-label="Vista ambientata sul lato destro del lavello" class="view" viewBox="0 0 920 620">
+<defs>
+<marker id="ambientArrow" markerHeight="7" markerWidth="7" orient="auto-start-reverse" refX="5" refY="5" viewBox="0 0 10 10"><path d="M0 0L10 5L0 10z" fill="#40545c"></path></marker>
+<pattern height="15" id="ambientGrate" patternUnits="userSpaceOnUse" width="15"><path d="M0 0L15 15M15 0L0 15" stroke="#8ea0a6" stroke-width="1"></path></pattern>
+</defs>
+<rect fill="#f4f5f3" height="230" rx="8" width="844" x="38" y="28"></rect>
+<g class="tile-line">
+<path d="M38 105H882M38 182H882"></path>
+<path d="M170 28V258M315 28V258M460 28V258M605 28V258M750 28V258"></path>
+</g>
+<path class="counter" d="M40 258 H880 V555 H40 Z"></path>
+<path class="sink" d="M80 342 Q92 295 145 292 H590 Q640 295 651 343 L617 535 H111 Z"></path>
+<path d="M104 356 Q114 318 158 315 H573 Q613 319 623 357 L595 509 H132Z" fill="#dce2e3" stroke="#89979b" stroke-width="2"></path>
+<path d="M345 302 V200 Q345 145 397 145 Q449 145 449 198 V270" fill="none" stroke="#343c40" stroke-linecap="round" stroke-width="22"></path>
+<rect fill="#aeb9bc" height="28" rx="10" stroke="#536267" stroke-width="2" width="104" x="377" y="267"></rect>
+
+<g transform="translate(433 509) rotate(-90) scale(.62)">
+<ellipse cx="230" cy="430" fill="#cbd5d7" opacity=".55" rx="225" ry="28"></ellipse>
+<path class="part-soft" d="M32 315 H350 Q385 315 404 290 Q420 270 438 280 Q453 291 441 310 Q414 353 365 365 H55 Q23 365 16 340 Q14 326 32 315Z" fill="var(--cream)"></path>
+<path class="part-soft" d="M355 310 Q378 260 421 257 L433 221 L449 256 Q486 271 490 307 Q493 343 460 362 Q421 383 390 356 Q369 339 355 310Z" fill="var(--cream)"></path>
+<rect fill="#f2e5c9" height="31" rx="8" stroke="#18343d" stroke-width="2" width="265" x="74" y="288"></rect>
+<rect fill="url(#ambientGrate)" height="19" rx="6" stroke="#18343d" width="238" x="87" y="293"></rect>
+<rect fill="#f0cd45" height="30" rx="5" stroke="#18343d" stroke-width="2" width="82" x="113" y="259"></rect>
+<rect fill="#f0cd45" height="30" rx="5" stroke="#18343d" stroke-width="2" width="82" x="220" y="259"></rect>
+<path class="part-soft" d="M127 288 C126 250 127 211 135 172 Q143 154 156 171 C164 210 161 250 159 288Z" fill="var(--cream-shadow)"></path>
+<path class="part-soft" d="M291 288 C290 250 291 211 299 172 Q307 154 320 171 C328 210 325 250 323 288Z" fill="var(--cream-shadow)"></path>
+<g data-part="Bordi piano superiore" data-info="Le sponde circondano il ripiano dei dispenser." data-result="I flaconi sono trattenuti lateralmente e non possono scivolare facilmente verso il lavello."><path class="part-soft" d="M105 157 H345 L355 173 H95 Z" fill="var(--cream2)"></path><path class="part-soft" d="M103 157 V140 H347 V157 M96 173 V160 H355 V173" fill="none" stroke="var(--cream-shadow)" stroke-width="9"></path></g>
+<g transform="translate(128 26)">
+<rect fill="#7bc875" height="86" rx="15" stroke="#18343d" stroke-width="2" width="82" x="0" y="45"></rect>
+<rect fill="#f1f4f4" height="30" rx="4" stroke="#18343d" stroke-width="2" width="28" x="27" y="17"></rect>
+<path d="M41 17V5H69" fill="none" stroke="#18343d" stroke-width="2"></path>
+</g>
+<g transform="translate(232 26)">
+<rect fill="#313b3e" height="86" rx="15" stroke="#18343d" stroke-width="2" width="82" x="0" y="45"></rect>
+<rect fill="#f1f4f4" height="30" rx="4" stroke="#18343d" stroke-width="2" width="28" x="27" y="17"></rect>
+<path d="M41 17V5H69" fill="none" stroke="#18343d" stroke-width="2"></path>
+</g>
+</g>
+
+<!-- Faccina in vista ambientata -->
+<g transform="translate(585 185) scale(0.9)" data-part="Testa frontale del gatto" data-info="La testa del gatto rimane ben leggibile anche nella vista ambientata e aiuta a dare identità al progetto." data-result="Il contenitore mantiene la forma felina senza sacrificare la funzione dei due piani.">
+  <path class="part" d="M20 20 L 35 -30 L 60 5 Z" fill="var(--cream)"></path>
+  <path class="part" d="M27 12 L 37 -20 L 52 2 Z" fill="var(--pink)"></path>
+  <path class="part" d="M80 15 L 110 -20 L 120 25 Z" fill="var(--cream)"></path>
+  <path class="part" d="M87 13 L 107 -10 L 113 22 Z" fill="var(--pink)"></path>
+  <ellipse class="part" cx="70" cy="45" fill="var(--cream)" rx="65" ry="50"></ellipse>
+  <circle cx="20" cy="60" fill="var(--cream)" r="22"></circle>
+  <circle cx="120" cy="60" fill="var(--cream)" r="22"></circle>
+  <path d="M 40 38 Q 52 25 64 38" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="3.5"></path>
+  <path d="M 78 38 Q 90 25 102 38" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="3.5"></path>
+  <polygon fill="var(--pink-dark)" points="65,48 75,48 70,55" stroke="#18343d" stroke-linejoin="round" stroke-width="1.5"></polygon>
+  <path d="M 60 58 Q 70 66 70 58 Q 70 66 80 58" fill="none" stroke="#18343d" stroke-linecap="round" stroke-width="2.5"></path>
+  <path d="M 15 48 L -15 42 M 12 56 L -18 56 M 15 64 L -12 70" stroke="#18343d" stroke-linecap="round" stroke-width="2"></path>
+  <path d="M 125 48 L 155 42 M 128 56 L 158 56 M 125 64 L 152 70" stroke="#18343d" stroke-linecap="round" stroke-width="2"></path>
+</g>
+
+<!-- caduta diretta nel lavello -->
+<g data-part="Caduta diretta nel lavello" data-info="Questa è la posizione reale dello scarico rispetto alla vasca centrale." data-result="L’acqua cade all’interno del lavello senza prolunghe, tubicini o parti nascoste." data-action="flow">
+<path class="waterDash" d="M603 394 V505"></path>
+<circle cx="603" cy="520" fill="var(--water)" r="6"></circle>
+</g>
+<rect class="note" height="94" rx="12" width="230" x="625" y="442"></rect>
+<text class="label" x="641" y="468">Scarico a caduta diretta</text>
+<text class="small" x="641" y="489">apertura libera 24 × 8 mm</text>
+<text class="small" x="641" y="507">nessun tubicino / cannuccia</text>
+<text class="small" x="641" y="525">scarico diretto nel lavello</text>
+<rect class="note" height="88" rx="12" width="198" x="655" y="92"></rect>
+<text class="label" x="670" y="117">Secondo piano</text>
+<text class="small" x="670" y="137">porta i dispenser in alto</text>
+<text class="small" x="670" y="154">liberando il bordo lavello</text>
+<text class="small" x="670" y="170">e separandoli dalle spugne</text><path d="M700 205 A55 55 0 0 1 755 260" fill="none" stroke="#d8845f" stroke-width="3" marker-end="url(#ambientArrow)"></path><text class="small" x="675" y="216">schema a 2 piani</text>
+</svg>
+</section>
+<div class="mouse-help"><b>Interazione:</b> clicca sugli elementi del disegno per evidenziarli e leggere <b>funzione</b> ed <b>effetto sul risultato finale</b>. Gli elementi di drenaggio animano anche il percorso dell’acqua. Clicca sullo sfondo della vista per deselezionare.</div>
+</section>
+<aside class="specs">
+<h2>Quote di progetto proposte</h2>
+<table class="measure-table">
+<tr><td>Ingombro totale</td><td>320 × 140 × 330 mm</td></tr>
+<tr><td>Corpo utile inferiore</td><td>280 × 120 mm</td></tr>
+<tr><td>Grata spugne</td><td>250 × 90 × 4 mm</td></tr>
+<tr><td>Vasca sotto grata</td><td>prof. 12 mm</td></tr>
+<tr><td>Pendenza fondo</td><td>≈ 3°</td></tr>
+<tr><td>Scarico diretto</td><td>apertura 24 × 8 mm</td></tr>
+<tr><td>Caduta acqua</td><td>libera, verticale</td></tr>
+<tr><td>Ripiano superiore utile</td><td>235 × 65 mm</td></tr><tr><td>Bordo piano superiore</td><td>12 mm</td></tr>
+<tr><td>Altezza utile dispenser</td><td>≥ 185 mm</td></tr>
+<tr><td>Spessore pareti strutturali</td><td>3.0–3.2 mm</td></tr>
+</table>
+<h3>Capacità prevista</h3>
+<ul><li><b>Piano 1:</b> 2 spugne da <b>75 × 110 mm</b>, orientate con il lato da 110 mm lungo il corpo.</li><li><b>Piano 2:</b> 2 dispenser da <b>110 × 50 × 175 mm</b>, con gioco laterale e posteriore.</li></ul>
+<h3>Forma “gatto”</h3>
+<p>
+        Design felino pensato per un contenitore a 2 piani: piano inferiore con grata e raccolta acqua per le spugne, piano superiore con bordo anticaduta per i porta-saponi e scarico rivolto verso il lavello.
+      </p>
+<h3>Nota costruttiva</h3>
+<p>
+        Conviene separare almeno <b>grata</b>, <b>corpo/vasca</b> e <b>ripiano superiore</b>,
+        così la pulizia è semplice e non serve stampare tutto come un unico pezzo.
+      </p>
+<div class="hint">
+        Le quote sono un primo dimensionamento funzionale, non ancora tolleranze finali da STL.
+      </div>
+<div class="design-improvements">
+<strong>Migliorie integrate nella V5</strong>
+<ul>
+<li>eliminata la vista prospettica superflua;</li>
+<li>aggiunta di una vera vista frontale (profilo da 140 mm);</li>
+<li>faccina dettagliata del gatto inserita direttamente sulla vista frontale, dall'alto e ambientata.</li>
+</ul>
+</div></aside>
+</div>
+</main>
+
+<script>
+(() => {
+  const escapeHtml = value => String(value ?? '').replace(/[&<>'"]/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'
+  })[c]);
+
+  document.querySelectorAll('.view-card').forEach(card => {
+    const svg = card.querySelector('svg');
+    const head = card.querySelector('.view-head');
+    if (!svg || !head) return;
+
+    const chip = document.createElement('span');
+    chip.className = 'interaction-chip';
+    chip.textContent = 'Elementi cliccabili';
+    head.appendChild(chip);
+
+    const panel = document.createElement('div');
+    panel.className = 'feature-result';
+    panel.setAttribute('aria-live', 'polite');
+    panel.innerHTML = `
+      <div class="feature-result-placeholder">
+        <b>Clicca un componente della vista.</b> Verranno mostrati il suo ruolo e l’effetto concreto sul progetto.
+      </div>`;
+    card.insertBefore(panel, svg);
+
+    const parts = [...svg.querySelectorAll('[data-part]')];
+    parts.forEach(part => {
+      part.setAttribute('tabindex', '0');
+      part.setAttribute('role', 'button');
+      part.setAttribute('aria-label', part.dataset.part || 'Componente interattivo');
+    });
+
+    function clearSelection(){
+      parts.forEach(el => {
+        el.classList.remove('is-selected', 'is-muted', 'is-flowing');
+      });
+      svg.querySelectorAll('.is-flowing').forEach(el => el.classList.remove('is-flowing'));
+      panel.classList.remove('is-active');
+      panel.innerHTML = `
+        <div class="feature-result-placeholder">
+          <b>Clicca un componente della vista.</b> Verranno mostrati il suo ruolo e l’effetto concreto sul progetto.
+        </div>`;
+    }
+
+    function selectPart(part){
+      parts.forEach(el => {
+        const related = el === part || el.contains(part) || part.contains(el);
+        el.classList.toggle('is-selected', el === part);
+        el.classList.toggle('is-muted', !related);
+        el.classList.remove('is-flowing');
+      });
+      svg.querySelectorAll('.is-flowing').forEach(el => el.classList.remove('is-flowing'));
+
+      if (part.dataset.action === 'flow') {
+        part.classList.add('is-flowing');
+        part.querySelectorAll('.water,.waterDash,circle').forEach(el => el.classList.add('is-flowing'));
+      }
+
+      const name = part.dataset.part || 'Componente';
+      const info = part.dataset.info || 'Elemento funzionale del progetto.';
+      const result = part.dataset.result || 'Contribuisce al funzionamento complessivo del supporto.';
+      panel.innerHTML = `
+        <div class="feature-result-head">
+          <span class="feature-result-badge">CLICK</span>
+          <span class="feature-result-title">${escapeHtml(name)}</span>
+        </div>
+        <div class="feature-result-grid">
+          <div class="feature-result-cell"><b>Funzione</b>${escapeHtml(info)}</div>
+          <div class="feature-result-cell"><b>Risultato</b>${escapeHtml(result)}</div>
+        </div>`;
+      panel.classList.add('is-active');
+    }
+
+    svg.addEventListener('click', event => {
+      const part = event.target.closest('[data-part]');
+      if (part && svg.contains(part)) selectPart(part);
+      else clearSelection();
+    });
+
+    svg.addEventListener('keydown', event => {
+      if (event.key !== 'Enter' && event.key !== ' ') return;
+      const part = event.target.closest('[data-part]');
+      if (!part) return;
+      event.preventDefault();
+      selectPart(part);
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

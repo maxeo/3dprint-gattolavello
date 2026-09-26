@@ -1,0 +1,110 @@
+{
+  "STL_manifold": true,
+  "intersections": [
+    {
+      "a": "V1",
+      "b": "V2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V1",
+      "b": "G2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V1",
+      "b": "G1",
+      "intersection_mm3": 2.2e-05
+    },
+    {
+      "a": "V1",
+      "b": "R1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V1",
+      "b": "S1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V1",
+      "b": "S2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V2",
+      "b": "G2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V2",
+      "b": "G1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V2",
+      "b": "R1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V2",
+      "b": "S1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "V2",
+      "b": "S2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "G2",
+      "b": "G1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "G2",
+      "b": "R1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "G2",
+      "b": "S1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "G2",
+      "b": "S2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "G1",
+      "b": "R1",
+      "intersection_mm3": 0.00101
+    },
+    {
+      "a": "G1",
+      "b": "S1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "G1",
+      "b": "S2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "R1",
+      "b": "S1",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "R1",
+      "b": "S2",
+      "intersection_mm3": 0.0
+    },
+    {
+      "a": "S1",
+      "b": "S2",
+      "intersection_mm3": 0.0
+    }
+  ]
+}

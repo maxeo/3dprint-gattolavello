@@ -1,0 +1,492 @@
+{
+  "output": "guida.html",
+  "title": "GattoLavello compatto · stampa e montaggio",
+  "theme": {
+    "accent": "#417f87",
+    "viewer_bg": "#20292d"
+  },
+  "header": {
+    "eyebrow": "Versione compatta · piatto 250 × 250 mm · pezzi entro 230 mm",
+    "h1": "Sette pezzi, nessun perno da stampare.",
+    "intro_html": "<b>Tutti gli incastri sono integrati nei pezzi.</b> Testa, petto, zampe e piedi sono un pezzo unico, senza tagli. La vasca è divisa in due; V2 scende dall’alto in due code di rondine con dentino a scatto. A montaggio finito tenoni e sedi non si vedono; il ripiano superiore blocca tutta la catena.",
+    "facts": [
+      {
+        "value": "7 pezzi",
+        "label": "incastri integrati"
+      },
+      {
+        "value": "230 mm",
+        "label": "pezzo più lungo (ripiano)"
+      },
+      {
+        "value": "360,1 × 144,0 × 218,3",
+        "label": "ingombro montato · mm"
+      },
+      {
+        "value": "0 perni",
+        "label": "da stampare a parte"
+      }
+    ]
+  },
+  "camera": {
+    "yaw": -0.65,
+    "pitch": 0.42
+  },
+  "caption": "Modello assemblato: ruota la vista, esplodi i pezzi o seleziona un elemento. I colori distinguono le parti, non prescrivono il filamento.",
+  "groups": {
+    "Gatto": {
+      "color": "#ccb48d"
+    },
+    "Vasca": {
+      "color": "#4f78b8"
+    },
+    "Piani": {
+      "color": "#8cab9e"
+    }
+  },
+  "parts": [
+    {
+      "id": "G1",
+      "label": "Parete, posteriore e coda",
+      "file": "G1_Parete_e_coda.stl",
+      "mode": "mesh",
+      "max_triangles": 30000,
+      "print": "corpo",
+      "group": "Gatto",
+      "view_file": "vista_guida/G1_Parete_e_coda.stl"
+    },
+    {
+      "id": "V1",
+      "label": "Vasca posteriore",
+      "file": "V1_Vasca_posteriore.stl",
+      "mode": "mesh",
+      "max_triangles": 3500,
+      "print": "vasche",
+      "group": "Vasca"
+    },
+    {
+      "id": "V2",
+      "label": "Vasca anteriore",
+      "file": "V2_Vasca_anteriore.stl",
+      "mode": "mesh",
+      "max_triangles": 6000,
+      "print": "vasche",
+      "group": "Vasca"
+    },
+    {
+      "id": "G2",
+      "label": "Testa, petto e zampe",
+      "file": "G2_Testa_petto_zampe.stl",
+      "mode": "mesh",
+      "max_triangles": 80000,
+      "print": "corpo",
+      "group": "Gatto",
+      "view_file": "vista_guida/G2_Testa_petto_zampe.stl"
+    },
+    {
+      "id": "S1",
+      "label": "Grata lato coda",
+      "file": "S1_Grata_coda.stl",
+      "mode": "mesh",
+      "max_triangles": 3500,
+      "print": "piani",
+      "group": "Piani"
+    },
+    {
+      "id": "S2",
+      "label": "Grata lato testa",
+      "file": "S2_Grata_testa.stl",
+      "mode": "mesh",
+      "max_triangles": 3500,
+      "print": "piani",
+      "group": "Piani"
+    },
+    {
+      "id": "R1",
+      "label": "Ripiano superiore",
+      "file": "R1_Ripiano_intero.stl",
+      "mode": "mesh",
+      "max_triangles": 8000,
+      "print": "piani",
+      "group": "Piani"
+    }
+  ],
+  "spread": {
+    "G1": [
+      -45,
+      0,
+      0
+    ],
+    "V1": [
+      0,
+      0,
+      0
+    ],
+    "V2": [
+      35,
+      0,
+      55
+    ],
+    "G2": [
+      90,
+      0,
+      20
+    ],
+    "S1": [
+      0,
+      0,
+      45
+    ],
+    "S2": [
+      35,
+      0,
+      90
+    ],
+    "R1": [
+      0,
+      0,
+      150
+    ]
+  },
+  "steps_section": {
+    "eyebrow": "01 / Montaggio",
+    "h2": "Dalla coda alla testa, poi il ripiano.",
+    "intro_html": "X va dalla coda alla testa; Z è la verticale. Gli STL sono in millimetri e nella posa di montaggio.",
+    "start_html": "<h3>Prima una prova a secco.</h3><p>Togli supporti e bave dalle sedi senza arrotondarne gli spigoli. Prova a mano il dentino a scatto della coda di rondine: deve entrare con una leggera pressione. Se è troppo duro, non forzarlo con il martello: passa una lima leggera sul dentino.</p>"
+  },
+  "steps": [
+    {
+      "title": "Appoggia parete e coda",
+      "short": "G1 · base del montaggio",
+      "text": "Metti G1 in piano. I piedi posteriori escono sotto: la vasca passerà sopra, senza toccarli.",
+      "parts": [
+        "G1"
+      ],
+      "built": [
+        "G1"
+      ]
+    },
+    {
+      "title": "Infila la vasca posteriore",
+      "short": "V1 su G1 · due tenoni",
+      "text": "Allinea le due sedi sul retro dei fianchi di V1 ai tenoni di G1 (7 × 5 mm). Spingi V1 in orizzontale verso la coda, sopra i piedi, fino a battuta contro la parete.",
+      "parts": [
+        "G1",
+        "V1"
+      ],
+      "built": [
+        "G1",
+        "V1"
+      ],
+      "moving": [
+        "V1"
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ],
+      "travel": 60
+    },
+    {
+      "title": "Cala la vasca anteriore",
+      "short": "V2 dall’alto · clic",
+      "text": "Porta V2 sopra V1, con le code di rondine del retro sopra le sedi agli angoli di V1. Abbassa V2 in verticale: scorre nelle guide, appoggia sulla linguetta sotto il fondo e il dentino scatta in sede. Da qui V1 e V2 non si separano più in orizzontale.",
+      "parts": [
+        "V1",
+        "V2"
+      ],
+      "built": [
+        "G1",
+        "V1",
+        "V2"
+      ],
+      "moving": [
+        "V2"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "travel": 60
+    },
+    {
+      "title": "Accosta il gatto",
+      "short": "G2 su V2 · due tenoni",
+      "text": "Allinea le sedi sul retro di G2 ai tenoni sulla faccia anteriore di V2. Spingi G2 in orizzontale verso la vasca finché il retro arrotondato si accosta alla faccia di V2 (gioco 0,15 mm). I tenoni restano nascosti.",
+      "parts": [
+        "V2",
+        "G2"
+      ],
+      "built": [
+        "G1",
+        "V1",
+        "V2",
+        "G2"
+      ],
+      "moving": [
+        "G2"
+      ],
+      "dir": [
+        1,
+        0,
+        0
+      ],
+      "travel": 60
+    },
+    {
+      "title": "Appoggia le due grate",
+      "short": "S1 + S2 · rientranze in basso",
+      "text": "Posa S1 dalla parte della coda e S2 dalla parte della testa, con le rientranze sulle quattro piastrine di ciascuna. Le grate restano estraibili.",
+      "parts": [
+        "S1",
+        "S2"
+      ],
+      "built": [
+        "G1",
+        "V1",
+        "V2",
+        "G2",
+        "S1",
+        "S2"
+      ],
+      "moving": [
+        "S1",
+        "S2"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "travel": 35
+    },
+    {
+      "title": "Posa il ripiano",
+      "short": "R1 · quattro perni",
+      "text": "Abbassa R1 in piano: i quattro fori passanti entrano nei perni di G1 (lato coda) e di G2 (lato testa). L’arco del bordo abbraccia la nuca con 1,5 mm di gioco. Il ripiano tiene insieme parete e gatto.",
+      "parts": [
+        "R1"
+      ],
+      "built": [
+        "G1",
+        "V1",
+        "V2",
+        "G2",
+        "S1",
+        "S2",
+        "R1"
+      ],
+      "moving": [
+        "R1"
+      ],
+      "dir": [
+        0,
+        0,
+        1
+      ],
+      "travel": 45
+    },
+    {
+      "title": "Controlla",
+      "short": "Assieme completo",
+      "text": "Verifica che i quattro piedi appoggino, che le grate si estraggano e che il ripiano stia in piano. Versa poca acqua sul ripiano e controlla che scenda nella vasca. Le giunzioni della vasca non sono stagne: se serve tenuta, sigillale con un prodotto compatibile con il materiale.",
+      "parts": [],
+      "built": [
+        "G1",
+        "V1",
+        "V2",
+        "G2",
+        "S1",
+        "S2",
+        "R1"
+      ]
+    }
+  ],
+  "map": {
+    "eyebrow": "02 / Pezzi",
+    "h2": "Quattro pezzi di corpo, tre piani removibili.",
+    "cards": [
+      {
+        "title": "Corpo",
+        "columns": 4,
+        "ids": [
+          "G1",
+          "V1",
+          "V2",
+          "G2"
+        ],
+        "note_html": "Dalla coda alla testa: parete e coda, vasca posteriore, vasca anteriore, gatto."
+      },
+      {
+        "title": "Piani",
+        "columns": 3,
+        "ids": [
+          "S1",
+          "S2",
+          "R1"
+        ],
+        "note_html": "Le grate poggiano sulle piastrine delle vasche; il ripiano sui perni di G1 e G2."
+      }
+    ]
+  },
+  "print": {
+    "eyebrow": "03 / Stampa",
+    "h2": "Lista di stampa.",
+    "common_html": "<b>Punto di partenza da verificare:</b> ugello 0,4 mm, layer 0,20 mm, 4 pareti. Sono proposte, non valori provati su questo kit: materiale e temperature vanno presi dal profilo del filamento.",
+    "profiles": [
+      {
+        "key": "corpo",
+        "title": "G1, G2 · gatto",
+        "rows": [
+          [
+            "Pareti",
+            "4"
+          ],
+          [
+            "Infill",
+            "15–20% Gyroid"
+          ],
+          [
+            "Supporti",
+            "sì, solo dove lo slicer li chiede (mento, coda, ripiani)"
+          ],
+          [
+            "Orientamento",
+            "in piedi, come montato"
+          ]
+        ],
+        "why": "Le forme organiche vanno stampate in piedi per non segnare il muso; G2 porta il ripiano attraverso le zampe.",
+        "summary": "4 pareti · 15–20% Gyroid · supporti mirati"
+      },
+      {
+        "key": "vasche",
+        "title": "V1, V2 · vasca",
+        "rows": [
+          [
+            "Pareti",
+            "4"
+          ],
+          [
+            "Infill",
+            "20%"
+          ],
+          [
+            "Orientamento",
+            "fondo sul piatto"
+          ],
+          [
+            "Supporti",
+            "no; controllare la tasca sotto il fondo di V2"
+          ]
+        ],
+        "why": "Code di rondine e sedi dei tenoni sono verticali e si stampano senza supporti con il fondo sul piatto.",
+        "summary": "4 pareti · 20% · fondo sul piatto"
+      },
+      {
+        "key": "piani",
+        "title": "R1, S1, S2 · ripiano e grate",
+        "rows": [
+          [
+            "Pareti",
+            "4"
+          ],
+          [
+            "Infill",
+            "20–25%"
+          ],
+          [
+            "Orientamento",
+            "fondo sul piatto"
+          ],
+          [
+            "Supporti",
+            "no"
+          ]
+        ],
+        "why": "Le barre strette lavorano sotto il peso dei dispenser; le rientranze delle grate sono ponti corti.",
+        "summary": "4 pareti · 20–25% · fondo sul piatto"
+      }
+    ],
+    "note_html": "Importa gli STL in millimetri, scala 100%. I file mantengono le coordinate dell’assieme: centra ogni pezzo e porta il suo punto più basso a Z = 0."
+  },
+  "notes": {
+    "eyebrow": "04 / Incastri",
+    "h2": "Entrano, scattano, spariscono.",
+    "nav": "Incastri",
+    "cards": [
+      {
+        "title": "V1–V2 · coda di rondine a scatto",
+        "html": "<p>Due code di rondine verticali a Y ±59,5 mm: radice 7 mm, punta 10 mm, profondità 5 mm, alte 12 mm (Z24–36). Sedi con 0,2 mm di gioco. Un dentino Ø1,8 mm a Z26 sporge 0,4 mm dalla punta: 0,2 mm di interferenza che dà lo scatto a fine corsa. V2 appoggia sulla linguetta di V1 sotto il fondo.</p><svg viewBox=\"0 0 420 170\" role=\"img\" aria-label=\"Coda di rondine vista dall'alto\"><rect x=\"20\" y=\"20\" width=\"180\" height=\"130\" fill=\"#4f78b8\"/><path d=\"M200 20H400V150H200V105H170L160 124V46L170 65H200Z\" fill=\"#8fb0e0\"/><path d=\"M200 63H175L163 42V128L175 107H200\" fill=\"none\" stroke=\"#20292d\" stroke-dasharray=\"4 3\"/><circle cx=\"163\" cy=\"85\" r=\"4\" fill=\"#20292d\"/><text x=\"26\" y=\"165\" font-size=\"12\">V1 vasca · sede</text><text x=\"300\" y=\"165\" font-size=\"12\">V2 · coda di rondine</text><text x=\"120\" y=\"14\" font-size=\"12\">radice 7 · punta 10 · profondità 5 mm</text></svg>"
+      },
+      {
+        "title": "Tenoni nascosti",
+        "html": "<p><b>G1 → V1:</b> due tenoni 7 × 5 mm, lunghi 10 mm, a Y ±57. <b>V2 → G2:</b> due tenoni 7 × 5 mm a Y ±18, Z28–33. Sedi cieche con 0,2 mm di gioco per lato e 0,5 mm in fondo; facce accostate con 0,15 mm: da fuori non si vede niente.</p>"
+      },
+      {
+        "title": "Ripiano e grate",
+        "html": "<p>Il ripiano è lungo 230 mm, con un arco sulla nuca a 1,5 mm di gioco. Quattro perni Ø6 alti 2,6 mm (G1 lato coda, G2 lato testa) entrano in fori passanti Ø6,3, separati dalle feritoie. Sotto il vassoio la mensola di G1 finisce a filo del retro, con un raccordo curvo; la piastra di G2 segue il contorno della testa e resta dentro il vassoio. Ogni grata poggia su quattro piastrine 9,2 × 9,2 mm alte 2 mm, in rientranze 10 × 10 mm (0,4 mm di gioco per lato).</p>"
+      },
+      {
+        "title": "Verifiche digitali",
+        "html": "<p><a href=\"verifica_stl.json\">verifica_stl.json</a>: i sette STL reimportati sono chiusi e nessuna coppia di pezzi si compenetra. Lo scatto e i giochi sono valori di progetto: non sono ancora stati provati in stampa.</p>"
+      }
+    ]
+  },
+  "files": {
+    "h2": "File del kit compatto.",
+    "intro_html": "Tieni questa guida nella cartella degli STL: il visualizzatore è incorporato e funziona offline.",
+    "links": [
+      {
+        "label": "G1 · Parete, posteriore e coda (109,3 × 133,1 × 193,5 mm)",
+        "href": "G1_Parete_e_coda.stl"
+      },
+      {
+        "label": "V1 · Vasca posteriore (134,3 × 144,0 × 24,2 mm)",
+        "href": "V1_Vasca_posteriore.stl"
+      },
+      {
+        "label": "V2 · Vasca anteriore (86,4 × 138,0 × 24,2 mm)",
+        "href": "V2_Vasca_anteriore.stl"
+      },
+      {
+        "label": "G2 · Testa, petto e zampe (124,4 × 111,7 × 218,3 mm)",
+        "href": "G2_Testa_petto_zampe.stl"
+      },
+      {
+        "label": "S1 · Grata lato coda (80,0 × 120,0 × 4,0 mm)",
+        "href": "S1_Grata_coda.stl"
+      },
+      {
+        "label": "S2 · Grata lato testa (105,0 × 120,0 × 4,0 mm)",
+        "href": "S2_Grata_testa.stl"
+      },
+      {
+        "label": "R1 · Ripiano superiore (230,0 × 126,4 × 15,2 mm)",
+        "href": "R1_Ripiano_intero.stl"
+      },
+      {
+        "label": "File Blender del kit",
+        "href": "GattoLavello_compatto_kit.blend"
+      },
+      {
+        "label": "Rapporto geometrico",
+        "href": "geometria.json"
+      },
+      {
+        "label": "Verifica STL",
+        "href": "verifica_stl.json"
+      },
+      {
+        "label": "Anteprima assemblato",
+        "href": "anteprima_assemblato.png"
+      },
+      {
+        "label": "Anteprima incastri",
+        "href": "anteprima_incastri.png"
+      }
+    ]
+  },
+  "footer_html": "GattoLavello compatto · guida offline rigenerabile da guida_spec.json."
+}

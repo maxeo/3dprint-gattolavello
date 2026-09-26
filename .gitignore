@@ -1,0 +1,9 @@
+# Backup automatici di Blender
+*.blend1
+# Cache Python
+__pycache__/
+*.pyc
+# STL superati spostati da esporta_kit.py
+obsoleti/
+# Catena di script Blender e blend donatore: solo in locale
+script/
